@@ -1,6 +1,9 @@
-# dm_stepper
+# Stepper for Flutter
 
-Stepper component.
+[![pub](https://img.shields.io/pub/v/dm_stepper.svg)](https://pub.dev/packages/dm_stepper)
+[![license: BSD](https://img.shields.io/badge/license-GPL-yellow.svg)](https://opensource.org/licenses/GPL-3.0)
+![build](https://github.com/Dineydm/dm_stepper/workflows/build/badge.svg)
+
 
 ## Getting Started
 
