@@ -36,7 +36,7 @@ void main() {
     );
 
     expect(find.text('A'), findsOneWidget);
-    expect(find.text('B'), findsNothing);
+    expect(find.text('B'), findsOneWidget);
 
     await tester.pumpWidget(
       CupertinoApp(
@@ -63,7 +63,7 @@ void main() {
       ),
     );
 
-    expect(find.text('A'), findsNothing);
+    expect(find.text('A'), findsOneWidget);
     expect(find.text('B'), findsOneWidget);
   });
 
