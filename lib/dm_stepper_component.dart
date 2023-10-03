@@ -9,6 +9,7 @@ class DMStepper extends StatelessWidget {
     this.direction = Axis.vertical,
     this.backgroundColor,
     this.height,
+    this.stepCircleSize,
     super.key,
   });
 
@@ -16,6 +17,7 @@ class DMStepper extends StatelessWidget {
   final Axis direction;
   final Color? backgroundColor;
   final double? height;
+  final double? stepCircleSize;
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +26,10 @@ class DMStepper extends StatelessWidget {
               label: e.label ?? 'STEP ${dmStepList.indexOf(e) + 1}',
               title: e.title,
               dmStepIcon: e.dmStepIcon,
+              stepCircleSize: stepCircleSize,
               dmStepType: e.dmStepType,
               stepIcon: e.stepIcon,
+              stepLabelWidget: e.stepLabelWidget,
               last: dmStepList.length == dmStepList.indexOf(e) + 1,
               key: Key('DM_STEP_${dmStepList.indexOf(e) + 1}'),
               direction: direction,

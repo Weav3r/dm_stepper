@@ -9,6 +9,7 @@ class DMStepModel {
   final DMStepType dmStepType;
   final IconData? dmStepIcon;
   final Widget? stepIcon;
+  final Widget? stepLabelWidget;
   final Widget? link;
   final DMStepColorsModel? dmStepColorsModel;
 
@@ -18,6 +19,7 @@ class DMStepModel {
     this.dmStepType = DMStepType.current,
     this.dmStepIcon,
     this.stepIcon,
+    this.stepLabelWidget,
     this.link,
     this.dmStepColorsModel,
   });

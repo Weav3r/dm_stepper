@@ -35,18 +35,25 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blueGrey.shade800,
       appBar: AppBar(
         title: Text(widget.title),
       ),
       body: Column(
         children: [
-          DMStepper(
-            getDMStepList(),
+          Flexible(
+            child: DMStepper(
+              getDMStepList(),
+              stepCircleSize: 15,
+            ),
           ),
           const SizedBox(height: 20),
-          DMStepper(
-            getDMStepList(),
-            direction: Axis.horizontal,
+          Flexible(
+            child: DMStepper(
+              getDMStepList(),
+              // stepCircleSize: 15,
+              direction: Axis.horizontal,
+            ),
           ),
         ],
       ),
@@ -57,13 +64,15 @@ class _MyHomePageState extends State<MyHomePage> {
 List<DMStepModel> getDMStepList() {
   return [
     DMStepModel(
+      label: '',
       title: 'Basic Details',
-      dmStepIcon: Icons.check,
+      stepIcon: const SizedBox.shrink(),
+      stepLabelWidget: const SizedBox.shrink(),
       dmStepType: DMStepType.done,
-      dmStepColorsModel: DMStepColorsModel().copyWith(
-        doneIcon: Colors.red,
-        doneBackground: Colors.limeAccent,
-      ),
+      // dmStepColorsModel: DMStepColorsModel().copyWith(
+      //   doneIcon: Colors.black,
+      //   doneBackground: Colors.limeAccent,
+      // ),
     ),
     DMStepModel(
       title: 'Company Details',

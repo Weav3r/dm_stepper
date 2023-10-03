@@ -32,7 +32,9 @@ dependencies:
   flutter:
     sdk: flutter
 
-  dm_stepper: ^1.0.0
+  # dm_stepper: ^1.0.0
+  dm_stepper: 
+   path: ../
 
 
   # The following adds the Cupertino Icons font to your application.

@@ -14,28 +14,34 @@ class DMStep extends StatelessWidget {
     this.last = false,
     this.direction = Axis.vertical,
     this.dmStepColorsModel,
+    this.stepCircleSize,
     this.stepIcon,
+    this.stepLabelWidget,
     this.link,
     super.key,
   });
 
+  final double? stepCircleSize;
   final String label;
   final String title;
   final DMStepType dmStepType;
   final IconData? dmStepIcon;
   final bool last;
   final Widget? stepIcon;
+  final Widget? stepLabelWidget;
   final Widget? link;
   final Axis direction;
   final DMStepColorsModel? dmStepColorsModel;
 
   @override
   Widget build(BuildContext context) {
+    print('[soso] size is $stepCircleSize');
     final lDmStepColorsModel = dmStepColorsModel ?? DMStepColorsModel();
 
     return Padding(
       padding: EdgeInsets.only(
-        top: 8,
+        // top: 8,
+        top: 0,
         left: (direction == Axis.vertical) ? 8 : 20,
         right: (direction == Axis.vertical) ? 8 : 0,
         bottom: (direction == Axis.horizontal) ? 8 : 0,
@@ -43,15 +49,45 @@ class DMStep extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          stepLabelWidget ??
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    label,
+                    style: TextStyle(
+                      color: getColor(
+                          dmStepType, DMStepItem.label, lDmStepColorsModel),
+                      fontSize: 10,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    title,
+                    style: TextStyle(
+                      color: getColor(
+                          dmStepType, DMStepItem.title, lDmStepColorsModel),
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+          (direction == Axis.vertical)
+              ? const Expanded(child: SizedBox(width: 20))
+              : const SizedBox(width: 20),
           Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: (direction == Axis.vertical)
+                ? MainAxisAlignment.end
+                : MainAxisAlignment.start,
             children: [
               Row(
                 children: [
-                  SizedBox(width: dmStepType != DMStepType.next ? 0 : 3),
+                  // SizedBox(width: dmStepType != DMStepType.next ? 0 : 3),
                   Container(
-                    padding:
-                        EdgeInsets.all(dmStepType != DMStepType.next ? 3 : 0),
+                    // padding:
+                    //     EdgeInsets.all(dmStepType != DMStepType.next ? 3 : 0),
                     decoration: BoxDecoration(
                       border: Border.all(
                           color: getColor(dmStepType, DMStepItem.border,
@@ -59,17 +95,19 @@ class DMStep extends StatelessWidget {
                       borderRadius: BorderRadius.circular(19),
                     ),
                     child: Container(
-                      height: 30,
-                      width: 30,
+                      height: stepCircleSize ?? 30,
+                      width: stepCircleSize ?? 30,
                       decoration: BoxDecoration(
                         color: getColor(dmStepType, DMStepItem.background,
                             lDmStepColorsModel),
+                        // color: Colors.white,
                         borderRadius: BorderRadius.circular(15),
                       ),
                       child: stepIcon ??
                           Icon(
                             dmStepIcon ?? Icons.arrow_downward_rounded,
-                            size: 20,
+                            size: 0.6 * (stepCircleSize ?? 30),
+                            // size: 100,
                             color: getColor(dmStepType, DMStepItem.icon,
                                 lDmStepColorsModel),
                           ),
@@ -78,31 +116,6 @@ class DMStep extends StatelessWidget {
                 ],
               ),
               getLink(direction == Axis.vertical, lDmStepColorsModel),
-            ],
-          ),
-          const SizedBox(width: 20),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                label,
-                style: TextStyle(
-                  color: getColor(
-                      dmStepType, DMStepItem.label, lDmStepColorsModel),
-                  fontSize: 10,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              const SizedBox(height: 2),
-              Text(
-                title,
-                style: TextStyle(
-                  color: getColor(
-                      dmStepType, DMStepItem.title, lDmStepColorsModel),
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
             ],
           ),
           getLink(direction == Axis.horizontal, lDmStepColorsModel),
@@ -116,10 +129,10 @@ class DMStep extends StatelessWidget {
       return link ??
           Padding(
             padding: EdgeInsets.only(
-              top: (direction == Axis.vertical) ? 8 : 15,
-              left: (direction == Axis.vertical) ? 8 : 20,
-              right: (direction == Axis.vertical) ? 8 : 0,
-              bottom: (direction == Axis.horizontal) ? 8 : 0,
+              top: (direction == Axis.vertical) ? 4 : 15,
+              left: (direction == Axis.vertical) ? 4 : 20,
+              right: (direction == Axis.vertical) ? 4 : 0,
+              bottom: (direction == Axis.horizontal) ? 8 : 4,
             ),
             child: Container(
               height: direction == Axis.vertical ? 40 : 3,
