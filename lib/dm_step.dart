@@ -135,7 +135,7 @@ class DMStep extends StatelessWidget {
               bottom: (direction == Axis.horizontal) ? 8 : 4,
             ),
             child: Container(
-              height: direction == Axis.vertical ? 40 : 3,
+              height: direction == Axis.vertical ? 25 : 3,
               width: direction == Axis.vertical ? 3 : 60,
               decoration: BoxDecoration(
                 color: getColor(dmStepType, DMStepItem.link, dmStepColorsModel),
